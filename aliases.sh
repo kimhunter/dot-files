@@ -163,6 +163,13 @@ function go () {
 	fi
 }
 
+function gob() {
+    cwd=$PWD
+    for d in viewer oompf-ipad; do go $d; git co $1 ; done
+	cd "$cwd"
+}
+
+
 function desym
 {
     /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKit.framework/Versions/Current/Resources/symbolicatecrash -A -v $1 . | more
