@@ -118,6 +118,8 @@ au FileType ruby noremap ; :!ruby %<CR>
 "noremap ; :!fpc % ; read<CR>
 au FileType pascal,delphi noremap ; :!fpc %<CR>
 au FileType pascal,delphi set sw=2 ts=2 
+"#############################
+au FileType haskell noremap ; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
 "##############################
 "au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
 au FileType c noremap ; :!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
