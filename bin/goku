@@ -8,7 +8,7 @@ CUR_WD = FileUtils.pwd
 
 repo_paths = ["~/.kit", "."]
 Dir.foreach DEV_PKG do |dpkg|
-  next if dpkg =~ /^(\.\.?|Oo.*SDK)$/
+  next if dpkg =~ /^(\.\.?|o.*-ios-viewer|viewer)$/
   repo_paths << "#{DEV_PKG}/#{dpkg}"
 end if File.exists? DEV_PKG
 
