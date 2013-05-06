@@ -3,7 +3,7 @@
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 PATH=$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin
 export PATH=$PATH
-
+#export CC=$(which clang)
 # For mercurial
 export PYTHONPATH=/usr/local/lib/python2.5/site-packages:$PYTHONPATH
 

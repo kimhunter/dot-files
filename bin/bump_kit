@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+KITSPEC = 'KitSpec'
+
+
+unless File.exists? KITSPEC
+  exit -1
+end
+
+
+
+def get_original_version
+  spec = YAML::load_file(KITSPEC)
+  spec['version']
+end
+
+def increment_major_version version
+  components = version.split('.')
+  major = components.shift.to_i + 1
+  components.map!{|v| 0 }
+  components.unshift major
+  components.join('.')
+end
+
+def increment_bugfix_version version
+  components = version.split('.')
+  bf_ver = components.pop.to_i + 1
+  components.push(bf_ver.to_s).join('.')
+end
+
+def replace_version_in_file_with_version v
+
+  kitspec = YAML::load_file(KITSPEC)
+  old = kitspec['version'] 
+  
+  kit_content = File.read(KITSPEC)
+  puts kit_content.scan(old).size.to_s + "#{old}"
+  if kit_content.scan(old).size != 1
+    puts "Can't reliably bump version"
+  else
+    kit_content.sub!(old, v)
+    File.write(KITSPEC, kit_content)
+    puts "Updated from #{old} -> #{v}"
+  end
+  
+end
+
+
+original_version = get_original_version
+new_version = increment_bugfix_version(original_version)
+
+# type is for future
+bump_type = :bugfix
+if ARGV.size == 1 
+  arg = ARGV[0].downcase.to_sym
+  if arg == :major
+    bump_type == :major
+    new_version = increment_major_version(original_version)
+  end
+end
+
+
+
+replace_version_in_file_with_version(new_version)
+
