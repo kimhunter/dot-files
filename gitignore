@@ -15,6 +15,7 @@ build/
 *.perspective
 *.perspectivev3
 **/project.xcworkspace
+project.xcworkspace
 *.xcuserdatad
 *.mode1v3
 *.mode2v3

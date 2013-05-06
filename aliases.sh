@@ -17,6 +17,7 @@ alias kax="ka Xcode"
 alias glat="git --no-pager log -n3"
 alias r='rake'
 alias rvm='CC=/usr/bin/gcc-4.2 rvm'
+alias mybranches="git branch | grep -E kim | grep -v '/exp/'"
 
 alias fjson="python -mjson.tool"
 alias safari_curl='curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"'
