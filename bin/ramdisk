@@ -14,7 +14,7 @@ fi
 # 	exit 1;
 # fi
 echo "Attempting to create ${orig}MB ramdisk"
-diskutil erasevolume HFS+ "$volume_name" `hdiutil attach -nomount ram://$size` > /dev/null
+diskutil erasevolume "Case-sensitive Journaled HFS+" "$volume_name" `hdiutil attach -nomount ram://$size` > /dev/null
 icon="1"; #`php -r 'echo rand(7,7);'`
 
 if [[ -d "/Volumes/$volume_name" ]]; then
