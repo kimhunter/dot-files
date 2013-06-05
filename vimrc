@@ -122,7 +122,7 @@ au FileType pascal,delphi set sw=2 ts=2
 au FileType haskell noremap ; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
 "##############################
 "au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
-au FileType c noremap ; :!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
+au FileType c noremap ; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
 au FileType cpp noremap ; :!g++ -o /tmp/a.out  %  && /tmp/a.out<CR>
 au FileType c source ~/.vim/c.vim
 "au FileType c noremap gc I/*<Esc>A*/<Esc>
