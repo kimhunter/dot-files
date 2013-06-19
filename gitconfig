@@ -25,7 +25,7 @@
 	status = auto
 	branch = auto
 [github]
-	user = bigkm
+	user = kimhunter
 [core]
 	excludesfile = /Users/kim/.gitignore
 [mergetool]

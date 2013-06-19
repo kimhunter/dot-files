@@ -16,7 +16,6 @@ alias o="open"
 alias kax="ka Xcode"
 alias glat="git --no-pager log -n3"
 alias r='rake'
-alias rvm='CC=/usr/bin/gcc-4.2 rvm'
 alias mybranches="git branch | grep -E kim | grep -v '/exp/'"
 
 alias fjson="python -mjson.tool"

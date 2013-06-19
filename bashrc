@@ -71,6 +71,4 @@ export HISTCONTROL=erasedups
 export HISTSIZE=10000
 shopt -s histappend
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+eval "$(rbenv init -)"
