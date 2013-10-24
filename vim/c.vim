@@ -1,11 +1,13 @@
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set nowrap
+set nosmarttab
 
-noremap \ :s/\([^\t{};]\)$/\1;/<cr>
-au FileType c noremap ; :!clang  %  && ./a.out<CR>
+"au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
+au FileType c noremap ; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
+au FileType cpp noremap ; :!g++ -o /tmp/a.out  %  && /tmp/a.out<CR>
 au FileType c :set cindent
+noremap \ :s/\([^\t{};]\)$/\1;/<cr>
 
 set dictionary-=/Users/kim/.vim/php/functionlist.txt dictionary+=/Users/kim/.vim/php/functionlist.txt
 " Use the dictionary completion
@@ -21,7 +23,8 @@ func! InsertTabWrapper()
 	endif 
 endfunction 
 
-
+map! =sf scanf("%", );<Esc>2hi
+map! =pf printf("%", );<Esc>2hi
 "map! =for for($i=0; ; i++<Esc>A {<Up><ESC>10l
 "map! =for for($i=0; ; i++)<Right>{<CR>}<Up><ESC>9l
 
