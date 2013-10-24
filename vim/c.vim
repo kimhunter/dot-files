@@ -4,7 +4,7 @@ set expandtab
 set nowrap
 
 noremap \ :s/\([^\t{};]\)$/\1;/<cr>
-au FileType c noremap ; :!gcc  %  && ./a.out<CR>
+au FileType c noremap ; :!clang  %  && ./a.out<CR>
 au FileType c :set cindent
 
 set dictionary-=/Users/kim/.vim/php/functionlist.txt dictionary+=/Users/kim/.vim/php/functionlist.txt
