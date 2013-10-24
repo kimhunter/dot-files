@@ -7,7 +7,7 @@ AllowShortLoopsOnASingleLine: false
 AlwaysBreakTemplateDeclarations: false
 AlwaysBreakBeforeMultilineStrings: false
 BinPackParameters: true
-ColumnLimit:     80
+ColumnLimit:     160
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 DerivePointerBinding: false
 ExperimentalAutoDetectBinPacking: false

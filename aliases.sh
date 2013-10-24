@@ -18,6 +18,7 @@ alias glat="git --no-pager log -n3"
 alias r='rake'
 alias mybranches="git branch | grep -E kim | grep -v '/exp/'"
 
+alias cff="clang-format -style=file"
 alias fjson="python -mjson.tool"
 alias safari_curl='curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"'
 
@@ -30,13 +31,12 @@ alias qlp="qlmanage -p"
 alias s="screen"
 alias dfh="df -h"
 alias xcwhich="xcode-select -print-path; xcodebuild -version"
+
 # remove Derived Data
 alias xcrmdd="rm -rdf ~/NoBackup/Xcode"
-
 alias xcb="xcodebuild -jobs 8"
 alias xcb-debug="time xcodebuild -jobs 8 -configuration Debug"
-alias xcb-qa='xcodebuild -configuration "Ad Hoc QA"'
-alias goo="go oompf-ipad"
+alias goo="go art"
 alias fuckingnetwork="networksetup -setairportpower  en1 off ; sleep 3; networksetup -setairportpower en1 on"
 
 function editprofile() {
