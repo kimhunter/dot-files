@@ -1,6 +1,7 @@
 .DS_Store
 .VolumeIcon.icns
 .fseventsd
+._*
 Icon^M^M
 Thumbs.db
 **/xcuserdata

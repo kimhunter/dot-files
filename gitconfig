@@ -10,22 +10,17 @@
 	sp = stash pop
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --date=relative
 	lgp = log -p --reverse --pretty=format:'%Cred%h%Creset - %Cblue(%an)%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-	submod = submodule
-	subrepo = submodule
 	rollback = reset --soft HEAD^
-	ire = rebase -i
-	unwatch = update-index --assume-unchanged
-	watch = update-index --no-assume-unchanged
     ignored =!git ls-files -v | grep "^[[:lower:]]" | sed 's/^[a-z]/assume-unchanged -> /'
 	diffc = diff --staged
     smp = smart-pull
+	unwatch = update-index --assume-unchanged
+	watch = update-index --no-assume-unchanged
 
 [color]
 	diff = auto
 	status = auto
 	branch = auto
-[github]
-	user = kimhunter
 [core]
 	excludesfile = /Users/kim/.gitignore
 [mergetool]
@@ -36,3 +31,5 @@
 	helper = osxkeychain
 [merge]
 	tool = opendiff
+[github]
+	user = kimhunter
