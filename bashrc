@@ -50,20 +50,18 @@ bind "set completion-ignore-case on"
 bind "set bell-style none" # No bell, because it's damn annoying
 bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
 
-# Turn on advanced bash completion if the file exists (get it here: http://www.caliban.org/bash/index.shtml#completion)
-if [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion
-fi
-# Git completion
-git_completion=/usr/local/etc/bash_completion.d/git-completion.bash
-if [ -f $git_completion ] ; then 
-    source $git_completion;
-    source /usr/local/etc/bash_completion.d/git-prompt.sh;
-fi
-
-# Brew Completion
-brew_completion=`brew --prefix`/Library/Contributions/brew_bash_completion.sh
-if [ -f $brew_completion ] ; then source $brew_completion; fi
+BW_PREFIX=`brew --prefix`
+#source files if exist
+bash_completion_files="
+    $BW_PREFIX/etc/bash_completion
+    $BW_PREFIX/etc/bash_completion.d/subversion
+    $BW_PREFIX/etc/bash_completion.d/git-completion.bash
+    $BW_PREFIX/etc/bash_completion.d/git-prompt.sh
+    $BW_PREFIX/Library/Contributions/brew_bash_completion.sh
+"
+for complete_file in $bash_completion_files; do
+    if [ -f $complete_file ]; then . $complete_file; fi
+done
 
 #set -o vim
 # history (bigger size, no duplicates, always append):
