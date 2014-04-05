@@ -13,6 +13,7 @@ alias systail='tail -f /var/log/system.log'
 alias top='top -o cpu'
 alias vi="vim"
 
+alias FinderZip="ditto -c -k --sequesterRsrc --keepParent" # params AppName.app AppName.zip Zip a file just like Finder does
 
 # Development
 alias ox="xcselect -o"
