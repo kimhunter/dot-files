@@ -16,6 +16,8 @@
     smp = smart-pull
 	unwatch = update-index --assume-unchanged
 	watch = update-index --no-assume-unchanged
+	ai = add -i
+	ap = add -p
 
 [color]
 	diff = auto
