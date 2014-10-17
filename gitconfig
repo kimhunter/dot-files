@@ -1,7 +1,8 @@
 [user]
 	name = Kim Hunter
 	email = bigkm1@gmail.com
-
+[rebase]
+	autosquash = true
 [alias]
 	ci = commit
 	st = status
