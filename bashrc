@@ -53,12 +53,15 @@ bind "set show-all-if-ambiguous On" # this allows you to automatically show comp
 BW_PREFIX=`brew --prefix`
 #source files if exist
 bash_completion_files="
+    /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
+    /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
     $BW_PREFIX/etc/bash_completion
     $BW_PREFIX/etc/bash_completion.d/subversion
-    $BW_PREFIX/etc/bash_completion.d/git-completion.bash
     $BW_PREFIX/etc/bash_completion.d/git-prompt.sh
     $BW_PREFIX/Library/Contributions/brew_bash_completion.sh
 "
+#$BW_PREFIX/etc/bash_completion.d/git-completion.bash
+
 for complete_file in $bash_completion_files; do
     if [ -f $complete_file ]; then . $complete_file; fi
 done
