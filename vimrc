@@ -56,10 +56,8 @@ endfunction
 " Save File
 :map <F3> :read !date<CR>kJ
 map <F4> ggO/**************************************************<CR>* Brief Discription:<CR>* Written By:  <CR>* Date: <CR>* Version:<CR>**************************************************/<CR>#include <stdio.h><CR>int main(void)<CR>{<CR>return 0;<CR>}<Esc>
-" F6 set paste
-:map #6 :set paste! 
+
 "map #7 :r!date '+\# \%a \%d/\%m/\%Y'<CR>
-map #8 0i#<Esc>
 
 "##############################
 
@@ -105,31 +103,36 @@ nnoremap gy  :call <SID>ToggleYesNo()<cr>
 "##############################
 " {{{ Auto commands
 " Automatically reload .vimrc when changing
-autocmd! bufwritepost .vimrc source %
+"autocmd! bufwritepost .vimrc source %
 " }}} Auto commands
+:source ~/.vim/leader.vim
 
 au FileType crontab set nobackup nowritebackup
 "##############################
 " Map ; to run PHP parser check
 au FileType php source ~/.vim/php/php.vim 
-au FileType php set ts=4 sw=4 noet    
-au FileType ruby noremap ; :!ruby %<CR>
+au FileType php set ts=4 sw=4 noet
 "##############################
 "noremap ; :!fpc % ; read<CR>
-au FileType pascal,delphi noremap ; :!fpc %<CR>
-au FileType pascal,delphi set sw=2 ts=2 
+"au FileType pascal,delphi noremap ; :!fpc %<CR>
+"au FileType pascal,delphi set sw=2 ts=2 
 "#############################
-au FileType haskell noremap ; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
 "##############################
 au FileType ruby set expandtab sw=2 ts=2
 au FileType make set noexpandtab
 "noremap ; :!cc % && ./a.out < ./answer.txt <CR>
 
 au FileType c source ~/.vim/c.vim
+
+" Compile + Run with leader ;
+"au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
+au FileType c map <Leader>; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
+au FileType ruby map <Leader>; :!ruby %<CR>
+au FileType haskell map <Leader>; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
+
 "##############################
 " Type :Man (command) to see a man page in split view
 " :Man 4 echo to go to section for of the man page
 " \K to to open man page for word under cursor
 ":source $VIMRUNTIME/ftplugin/man.vim
-:source ~/.vim/leader.vim
 

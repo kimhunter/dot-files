@@ -3,9 +3,6 @@ set shiftwidth=4
 set expandtab
 set nosmarttab
 
-"au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
-au FileType c noremap ; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
-au FileType cpp noremap ; :!g++ -o /tmp/a.out  %  && /tmp/a.out<CR>
 au FileType c :set cindent
 noremap \ :s/\([^\t{};]\)$/\1;/<cr>
 
