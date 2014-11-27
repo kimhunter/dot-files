@@ -3,15 +3,15 @@ username = Kim Hunter <bigkm1@gmail.com>
 
 [extensions]
 #alias =
-color =
+color=
 rebase=
-mq = 
-hgext.convert =
-zeroconf =
-hgext.record =
-hgext.graphlog = 
-hgext.bookmarks =
-purge = 
+mq=
+hgext.convert=
+zeroconf=
+hgext.record=
+hgext.graphlog=
+hgext.bookmarks=
+purge=
 #hgbb = ~/.hgext/hgbb/hgbb.py
 #svn = ~/.hgext/hgsubversion/hgsubversion
 
@@ -20,6 +20,9 @@ purge =
 #fits in 1 terminal window if single line commit messages
 gl = glog -l4
 lc = log --style compact
+
+[diff]
+git = True
 
 # short log
 llog = log --limit 10
