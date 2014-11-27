@@ -13,7 +13,7 @@ smiley_status() {
   if [ $? = 0 ]; then
     export SMILEY="\001\033[32m\002⚡\001\033[0m\002"
   else
-    export SMILEY="\001\033[31m\002☢\001\033[0m\002"
+    export SMILEY="\001\033[31m\002🚫\001\033[0m\002"
   fi
 }
 
