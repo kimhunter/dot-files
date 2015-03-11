@@ -127,6 +127,7 @@ au FileType c source ~/.vim/c.vim
 " Compile + Run with leader ;
 "au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
 au FileType c noremap <Leader>; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
+au FileType c noremap ; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
 au FileType ruby noremap <Leader>; :!ruby %<CR>
 au FileType haskell noremap <Leader>; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
 

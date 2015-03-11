@@ -62,8 +62,8 @@ alias kf="killall Finder"
 alias kicknetworkintheguts="networksetup -setairportpower  en1 off ; sleep 3; networksetup -setairportpower en1 on"
 alias safari_curl='curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"'
 
-function repeter() {
-    yes "$*" | xargs say
+function dash() {
+    open "dash://$*"
 }
 
 # Find a case insensitve string in the current hierarchy
