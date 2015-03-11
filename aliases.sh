@@ -29,7 +29,7 @@ alias xcwhich="xcode-select -print-path; xcodebuild -version"
 alias xcrmdd="rm -rdf ~/NoBackup/Xcode"
 alias xcb="xcodebuild -jobs 8"
 alias xcb-debug="time xcodebuild -jobs 8 -configuration Debug"
-alias goo="go art"
+alias goo="go"
 
 # Git
 # alias gl='git pull'
