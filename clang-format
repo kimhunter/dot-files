@@ -25,6 +25,6 @@ Cpp11BracedListStyle: false
 Standard:        C++03
 IndentWidth:     4
 UseTab:          false
-BreakBeforeBraces: Linux 
+BreakBeforeBraces: Allman
 IndentFunctionDeclarationAfterType: false
 
