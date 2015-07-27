@@ -73,4 +73,8 @@ export HISTCONTROL=erasedups
 export HISTSIZE=10000
 shopt -s histappend
 
+if [[ -f .other_bashrc ]]; then
+    source .other_bashrc
+fi
+
 eval "$(rbenv init -)"
