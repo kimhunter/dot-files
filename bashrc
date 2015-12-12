@@ -60,6 +60,7 @@ bash_completion_files="
     $BW_PREFIX/etc/bash_completion.d/git-prompt.sh
     $BW_PREFIX/etc/bash_completion.d/hg-completion.bash
     $BW_PREFIX/Library/Contributions/brew_bash_completion.sh
+    $BW_PREFIX/etc/bash_completion.d/django
 "
 #$BW_PREFIX/etc/bash_completion.d/git-completion.bash
 
@@ -78,3 +79,7 @@ if [[ -f .other_bashrc ]]; then
 fi
 
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+
