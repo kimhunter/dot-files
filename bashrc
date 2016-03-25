@@ -1,13 +1,10 @@
 
 # default path so if i reload i don't get slow downs
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-PATH=$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin
-export PATH=$PATH
-#export CC=$(which clang)
-# For mercurial
-export PYTHONPATH=/usr/local/lib/python2.5/site-packages:$PYTHONPATH
+export PYENV_ROOT="$HOME/.pyenv"
 
-export APPENGINE_SDK_HOME=/opt/appengine-java-sdk-1.3.4
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+PATH=$PYENV_ROOT/bin:$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin
+export PATH=$PATH
 
 smiley_status() {
   if [ $? = 0 ]; then
