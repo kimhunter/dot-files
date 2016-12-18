@@ -1,10 +1,12 @@
 
 # default path so if i reload i don't get slow downs
 export PYENV_ROOT="$HOME/.pyenv"
+export GOPATH=$HOME/Projects/go
 
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-PATH=$PYENV_ROOT/bin:$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin
+PATH=$PYENV_ROOT/bin:$PATH:~/.bin:~/Library/haskell/bin:$GOPATH/bin
 export PATH=$PATH
+
 
 smiley_status() {
   if [ $? = 0 ]; then
