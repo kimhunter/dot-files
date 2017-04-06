@@ -29,7 +29,9 @@
 [mergetool]
 	keepBackup = true
 [push]
-	default = simple
+	default = simple	
+[status]
+	showUntrackedFiles = all
 [credential]
 	helper = osxkeychain
 [merge]
