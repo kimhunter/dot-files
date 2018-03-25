@@ -3,7 +3,7 @@ AccessModifierOffset: -2
 AlignEscapedNewlinesLeft: false
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortIfStatementsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: true
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakTemplateDeclarations: false
 AlwaysBreakBeforeMultilineStrings: false
@@ -24,7 +24,7 @@ PenaltyReturnTypeOnItsOwnLine: 60
 PointerBindsToType: false
 SpacesBeforeTrailingComments: 1
 Cpp11BracedListStyle: false
-Standard:        C++03
+#Standard:        C++
 IndentWidth:     4
 UseTab:          false
 BreakBeforeBraces: Allman
