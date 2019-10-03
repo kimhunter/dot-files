@@ -50,16 +50,12 @@ bind "set bell-style none" # No bell, because it's damn annoying
 bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
 
 BW_PREFIX=`brew --prefix`
+
 #source files if exist
 bash_completion_files="
     /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
     /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
-    $BW_PREFIX/etc/bash_completion
-    $BW_PREFIX/etc/bash_completion.d/subversion
-    $BW_PREFIX/etc/bash_completion.d/git-prompt.sh
-    $BW_PREFIX/etc/bash_completion.d/hg-completion.bash
-    $BW_PREFIX/Library/Contributions/brew_bash_completion.sh
-    $BW_PREFIX/etc/bash_completion.d/django
+    $BW_PREFIX/etc/bash_completion.d/*
 "
 #$BW_PREFIX/etc/bash_completion.d/git-completion.bash
 
