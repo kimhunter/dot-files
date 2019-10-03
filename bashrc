@@ -1,6 +1,6 @@
 
 # default path so if i reload i don't get slow downs
-#export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv"
 export GOPATH=$HOME/Projects/go
 
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -78,7 +78,7 @@ if [[ -f .other_bashrc ]]; then
 fi
 
 #eval "$(rbenv init -)"
-#eval "$(pyenv init -)"
+eval "$(pyenv init -)"
 
 #export PYTHONSTARTUP=$HOME/.pythonrc.py
 

@@ -12,6 +12,8 @@ alias s="screen"
 alias systail='tail -f /var/log/system.log'
 alias top='top -o cpu'
 alias vi="vim"
+alias origfind="find . -name '*.orig'"
+alias whats_open="sudo lsof -i -n -P | grep LISTEN"
 
 alias FinderZip="ditto -c -k --sequesterRsrc --keepParent" # params AppName.app AppName.zip Zip a file just like Finder does
 
@@ -59,8 +61,8 @@ alias gist="open http://gist.github.com"
 # Apple 
 alias qlp="qlmanage -p"
 alias kf="killall Finder"
-alias kicknetworkintheguts="networksetup -setairportpower  en1 off ; sleep 3; networksetup -setairportpower en1 on"
 alias safari_curl='curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"'
+alias blessed="sudo bless -setBoot -mount" # $ blessed /Volume/Foo
 
 function dash() {
     open "dash://$*"
@@ -71,9 +73,14 @@ function lookfor() {
   grep -EiIrl "$*" ./* | grep -v '.svn'
 }
 
-function gtow() {
-  go
-  git clone $1 $2 && gittower $2
+function psg() {
+    PSOUT=`ps aux`; echo "$PSOUT" | grep -i "$1"
+}
+
+#python
+# show help doc for symbol e.g. $ ph dict
+function ph() {
+    python -c "help($1)"
 }
 
 # Haskell
@@ -89,6 +96,16 @@ function to_ipod() {
    VAL="HandBrakeCLI -i ${1} -o ${1}.mp4 --preset=\"iPhone & iPod Touch\""
    echo $VAL
    sh -c $VAL
+}
+
+function install_py_version() {
+    for v in $*; do
+        CFLAGS="-I$(brew --prefix openssl)/include -I$(xcrun --show-sdk-path)/usr/include" LDFLAGS="-L$(brew --prefix openssl)/lib" pyenv install $v
+    done
+}
+
+function jsoncurl() {
+    curl $* | python -mjson.tool
 }
 
 function fill_file() {
