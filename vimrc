@@ -70,6 +70,9 @@ function s:ToggleYesNo()
   elseif w=="true"       | let w="false"
   elseif w=="false"      | let w="true"
 
+  elseif w=="True"       | let w="False"
+  elseif w=="False"      | let w="True"
+
   elseif w=="on"         | let w="off"
   elseif w=="off"        | let w="on"
 
@@ -78,6 +81,7 @@ function s:ToggleYesNo()
 
   elseif w=="manual"     | let w="auto"
   elseif w=="auto"       | let w="manual"
+
   elseif w=="char"       | let w="int"
   elseif w=="int"        | let w="bool"
   elseif w=="bool"       | let w="char"
@@ -85,7 +89,6 @@ function s:ToggleYesNo()
   elseif w=="private"    | let w="public"
   elseif w=="public"     | let w="protected"
   elseif w=="protected"  | let w="private"
-  elseif w=="mixed"      | let w="string"
 
   elseif w=="pick"       | let w="squash"
   elseif w=="squash"     | let w="edit"
@@ -108,6 +111,7 @@ nnoremap gy  :call <SID>ToggleYesNo()<cr>
 "autocmd! bufwritepost .vimrc source %
 " }}} Auto commands
 :source ~/.vim/leader.vim
+
 
 au FileType crontab set nobackup nowritebackup
 "##############################

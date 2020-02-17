@@ -125,6 +125,7 @@ function go () {
 	fi
 }
 
+alias fo=go
 
 function desym
 {
