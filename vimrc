@@ -101,7 +101,7 @@ function s:ToggleYesNo()
 endfunc
 
 nnoremap gy  :call <SID>ToggleYesNo()<cr>
-#Quote the current token
+"Quote the current token
 :nnoremap <Leader>" ciw""<Esc>P
 
 "##############################
