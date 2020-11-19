@@ -7,7 +7,8 @@ elif [[ -d "$home/library/python/3.7/bin" ]]; then
     path="$path:$home/library/python/3.7/bin"
 fi
 
-export PATH=$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin
+export PATH=$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin:/opt/local/bin
+
 
 export PYENV_ROOT="$HOME/.pyenv"
 export HOMEBREW_NO_ANALYTICS=1
