@@ -2,7 +2,6 @@
 username = Kim Hunter <bigkm1@gmail.com>
 
 [extensions]
-#alias =
 color=
 rebase=
 mq=
@@ -12,8 +11,6 @@ hgext.record=
 hgext.graphlog=
 hgext.bookmarks=
 purge=
-#hgbb = ~/.hgext/hgbb/hgbb.py
-#svn = ~/.hgext/hgsubversion/hgsubversion
 
 
 [alias]
