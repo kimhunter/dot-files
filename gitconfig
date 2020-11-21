@@ -1,6 +1,8 @@
 [user]
 	name = Kim Hunter
 	email = bigkm1@gmail.com
+[init]
+	defaultBranch = main
 [rebase]
 	autosquash = true
 	autostash = true
