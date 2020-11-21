@@ -42,3 +42,8 @@ if [[ -f .other_bashrc ]]; then
     source .other_bashrc
 fi
 
+# Change dir to closest parent
+function pcd() {
+    cd "$1" || pcd "$(dirname "$1")"
+}
+
