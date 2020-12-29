@@ -1,5 +1,6 @@
 alias ls='ls -G'
 alias la='ls -lah'
+alias ll='ls -lah'
 alias ..='cd ..;'
 alias ...='.. ..'
 alias dfh="df -h"
@@ -116,8 +117,7 @@ function fill_file() {
 
 # Project file goto
 function go () {
-	PROJECT_DIRS="$HOME/Projects"
-	RES=`find $PROJECT_DIRS -iname "${1}*" -maxdepth 1 | head -n 1`
+	RES=$(find $HOME/Projects $HOME/Projects/oss -iname "${1}*" -maxdepth 1 | head -n 1)
 	if [[ "$RES" == "" ]]; then
 		cd "$PROJECT_DIRS"
 	else
