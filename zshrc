@@ -7,7 +7,9 @@ if [[ -r ~/.aliases.sh ]]; then
     . ~/.aliases.sh
 fi
 
-OS_VERSION=$(sw_vers -buildVersion)
+if [[ -e /usr/bin/sw_vers ]]; then
+    OS_VERSION=$(sw_vers -buildVersion)
+fi
 
 ###################
 #     Options     #
