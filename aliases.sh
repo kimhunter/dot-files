@@ -11,7 +11,6 @@ alias mate="mate -r"
 alias o="open"
 alias s="screen"
 alias systail='tail -f /var/log/system.log'
-alias top='top -o cpu'
 alias vi="vim"
 alias origfind="find . -name '*.orig'"
 alias whats_open="sudo lsof -i -n -P | grep LISTEN"
