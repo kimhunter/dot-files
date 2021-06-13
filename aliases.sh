@@ -4,6 +4,7 @@ alias ll='ls -lah'
 alias ..='cd ..;'
 alias ...='.. ..'
 alias dfh="df -h"
+alias icd="cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/"
 alias du1="du -hd1"
 alias ea='mvim -f ~/.aliases.sh && source ~/.aliases.sh'
 alias ka="killall"
