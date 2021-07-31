@@ -42,3 +42,5 @@
 	tool = opendiff
 [github]
 	user = kimhunter
+[pull]
+	rebase = true

@@ -45,6 +45,8 @@ autoload -Uz vcs_info
 #zstyle ':vcs_info:git:*' formats '(%b %u)'
 zstyle ':vcs_info:git+set-message:*' hooks evil_git_dirty
 zstyle ':vcs_info:git:*' formats '%F{red}(%b%s)%f'
+zstyle ':vcs_info:*' disable-patterns "($HOME/?|/Network/*)"
+
 precmd() { vcs_info }
 setopt PROMPT_SUBST
 PROMPT=$'%m:$OS_VERSION %~ ${vcs_info_msg_0_} %v\n$ '
