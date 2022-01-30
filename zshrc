@@ -89,7 +89,7 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 ###################
 
 # cd to directories in these places, if name typed
-cdpath=( ~/Projects/ ~ )
+#cdpath=( ~/Projects/ ~ )
 
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line
