@@ -51,3 +51,6 @@ function pcd() {
     cd "$1" || pcd "$(dirname "$1")"
 }
 
+if [[ -e "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
