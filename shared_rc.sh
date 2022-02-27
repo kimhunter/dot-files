@@ -11,7 +11,7 @@ if [[ -d "$HOME/Library/Python" ]]; then
     fi
 fi
 
-export PATH=$PATH:~/.bin:~/Library/haskell/bin:/usr/texbin:/opt/local/bin
+export PATH=/opt/homebrew/bin:$PATH:~/.bin:~/Library/haskell/bin
 
 
 export PYENV_ROOT="$HOME/.pyenv"

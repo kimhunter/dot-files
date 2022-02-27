@@ -117,7 +117,7 @@ function fill_file() {
 
 # Project file goto
 function go () {
-	RES=$(find $HOME/Projects $HOME/Projects/oss -maxdepth 1 -iname "${1}*" | head -n 1)
+	RES=$(find $HOME/Projects $HOME/Projects/oss -maxdepth 1 -type dir -iname "${1}*" | head -n 1)
 	if [[ "$RES" == "" ]]; then
 		cd "$PROJECT_DIRS"
 	else
