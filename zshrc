@@ -107,6 +107,16 @@ setopt complete_in_word
 setopt list_ambiguous
 setopt completealiases
 setopt correct
-autoload -U compinit
+
+# Brew completion
+if type brew &>/dev/null; then
+  HOMEBREW_NO_INSTALL_CLEANUP=1
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
+autoload -Uz compinit
 compinit
 
+if ! [[ $PATH == */opt/homebrew/sbin* ]]; then
+    export PATH="/opt/homebrew/sbin:$PATH"
+fi
