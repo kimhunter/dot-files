@@ -1,0 +1,46 @@
+#!/bin/sh
+# Remove all metadata except for basic shooting settings.
+
+
+KEEP_ARGS=$(xargs <<KEEP
+    -EXIF:PhotometricInterpretation
+    -EXIF:Make
+    -EXIF:Model
+    -EXIF:Orientation
+    -EXIF:ExposureTime
+    -EXIF:FNumber
+    -EXIF:ExposureProgram
+    -EXIF:ISO
+    -EXIF:SensitivityType
+    -EXIF:RecommendedExposureIndex
+    -EXIF:ExposureCompensation
+    -EXIF:MeteringMode
+    -EXIF:LightSource
+    -EXIF:Flash
+    -EXIF:FocalLength
+    -EXIF:SceneType
+    -EXIF:CustomRendered
+    -EXIF:ExposureMode
+    -EXIF:WhiteBalance
+    -EXIF:LensInfo
+    -EXIF:LensMake
+    -EXIF:LensModel
+KEEP
+)
+
+TMP_TAGS_FILE=$(mktemp)
+set -e
+
+for file in "$@"; do
+    if [[ -f $file ]]; then
+        if exiftool -T -MIMEType "$file" | grep -q 'image/'; then
+            exiftool -args "$file" $KEEP_ARGS > "$TMP_TAGS_FILE" \
+                && exiftool -all= "$file" \
+                && exiftool -@ "$TMP_TAGS_FILE" "$file" \
+                && continue
+        fi
+    fi
+    echo "Failed to clean metadata from $file"
+done
+
+rm -f "$TMP_TAGS_FILE";
