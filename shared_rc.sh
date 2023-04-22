@@ -1,14 +1,8 @@
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
 #include python user installs in path
-if [[ -d "$HOME/Library/Python" ]]; then
-    if [[ -d "$HOME/Library/Python/3.8/bin" ]]; then
-        PATH="$PATH:$HOME/Library/Python/3.8/bin"
-    elif [[ -d "$HOME/library/python/3.7/bin" ]]; then
-        PATH="$PATH:$HOME/Library/Python/3.7/bin"
-    elif [[ -d "$HOME/Library/Python/bin" ]]; then
-        PATH="$PATH:$HOME/Library/Python/bin"
-    fi
+if [[ -d "$HOME/Library/Python/3.9/bin" ]]; then
+    PATH="$PATH:$HOME/Library/Python/3.9/bin"
 fi
 
 export PATH=/opt/homebrew/bin:$PATH:~/.bin:~/Library/haskell/bin
