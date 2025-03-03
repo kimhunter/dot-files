@@ -12,6 +12,10 @@ if [[ -e /usr/bin/sw_vers ]]; then
 fi
 
 ###################
+#   Environment   #
+###################
+
+###################
 #     Options     #
 ###################
 unsetopt beep
