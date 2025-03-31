@@ -27,6 +27,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -x4
+	editor = vim
 [mergetool]
 	keepBackup = true
 [push]
