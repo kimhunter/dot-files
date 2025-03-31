@@ -65,6 +65,9 @@ alias kf="killall Finder"
 alias safari_curl='curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"'
 alias blessed="sudo bless -setBoot -mount" # $ blessed /Volume/Foo
 
+alias fpnopkg="xattr -w 'com.apple.fileprovider.dir#N' 1"
+alias fpnosync="xattr -w 'com.apple.fileprovider.ignore#P' 1"
+
 function dash() {
     open "dash://$*"
 }
