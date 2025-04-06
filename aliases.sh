@@ -118,6 +118,10 @@ function fill_file() {
   echo creating file of size ${1}mb
 }
 
+function mkcd() {
+    cd "$(mkdir -pv "$1" | head -n1)"
+}
+
 # Project file goto
 function go () {
 	RES=$(find "$HOME/src" "$HOME/Projects/" "$HOME/Projects/oss" -maxdepth 1 -type dir -iname "${1}*" 2>/dev/null | head -n 1)
