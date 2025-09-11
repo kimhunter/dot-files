@@ -1,0 +1,3 @@
+#!/bin/sh
+
+system_profiler -detailLevel mini SPHardwareDataType SPMemoryDataType SPDisplaysDataType SPStorageDataType
