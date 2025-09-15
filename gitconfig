@@ -9,6 +9,8 @@
 	co = checkout
 	ss = stash save
 	sp = stash pop
+	rbc = rebase --continue
+	cp = cherry-pick
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --date=relative
 	lgp = log -p --pretty=format:'%Cred%h%Creset - %Cblue(%an)%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	rollback = reset --soft HEAD^

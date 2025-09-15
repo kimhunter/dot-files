@@ -44,12 +44,14 @@ function +vi-evil_git_dirty {
 # Load version control information
 # Set up the prompt (with git branch name)
 autoload -Uz vcs_info
+# For debugging output
+# zstyle ':vcs_info:*+*:*' debug true
 # Format the vcs_info_msg_0_ variable
 #zstyle ':vcs_info:*' check-for-changes true
 #zstyle ':vcs_info:git:*' formats '(%b %u)'
 zstyle ':vcs_info:git+set-message:*' hooks evil_git_dirty
 zstyle ':vcs_info:git:*' formats '%F{red}(%b%s)%f'
-zstyle ':vcs_info:*' disable-patterns "($HOME/?|/Network/*)"
+zstyle ':vcs_info:*' disable-patterns "($HOME/?|~/|/Network/*)"
 
 precmd() { vcs_info }
 setopt PROMPT_SUBST
