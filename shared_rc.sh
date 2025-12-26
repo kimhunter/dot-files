@@ -1,7 +1,7 @@
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
 #include python user installs in path
-if [[ -d "$HOME/Library/Python/3.9/bin" ]]; then
+if [ -d "$HOME/Library/Python/3.9/bin" ]; then
     PATH="$PATH:$HOME/Library/Python/3.9/bin"
 fi
 
