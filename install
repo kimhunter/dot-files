@@ -1,0 +1,50 @@
+#!/bin/zsh
+
+# Install dot files into user's home directory
+
+replace_all=false
+
+link_file() {
+  local file=$1
+  echo "linking ~/.${file}"
+  ln -s "$PWD/$file" "$HOME/.$file"
+}
+
+replace_file() {
+  local file=$1
+  rm "$HOME/.$file"
+  link_file "$file"
+}
+
+for file in *; do
+  # Skip install script and README
+  [[ "$file" == "install" || "$file" == "Rakefile" || "$file" == "README" || "$file" == "README.md" ]] && continue
+
+  target="$HOME/.$file"
+
+  if [[ -e "$target" || -L "$target" ]]; then
+    if $replace_all; then
+      replace_file "$file"
+    else
+      printf "overwrite ~/.%s? [ynaq] " "$file"
+      read -r response
+      case $response in
+        a)
+          replace_all=true
+          replace_file "$file"
+          ;;
+        y)
+          replace_file "$file"
+          ;;
+        q)
+          exit
+          ;;
+        *)
+          echo "skipping ~/.$file"
+          ;;
+      esac
+    fi
+  else
+    link_file "$file"
+  fi
+done
