@@ -2,6 +2,19 @@
 
 # Install dot files into user's home directory
 
+# Files to exclude from symlinking
+is_excluded() {
+  case "$1" in
+    install|Rakefile|CLAUDE.md|verify.rb)
+      return 0
+      ;;
+    README*)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
 replace_all=false
 
 link_file() {
@@ -17,8 +30,7 @@ replace_file() {
 }
 
 for file in *; do
-  # Skip install script and README
-  [[ "$file" == "install" || "$file" == "Rakefile" || "$file" == "README" || "$file" == "README.md" ]] && continue
+  is_excluded "$file" && continue
 
   target="$HOME/.$file"
 
