@@ -28,5 +28,7 @@ playground.xcworkspace
 
 *.tm_build_errors
 
+**/.claude/settings.local.json
+
 .svn
 .hg

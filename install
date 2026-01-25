@@ -11,6 +11,9 @@ is_excluded() {
     README*)
       return 0
       ;;
+    *.swp)
+      return 0
+      ;;
   esac
   return 1
 }
