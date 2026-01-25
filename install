@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # Install dot files into user's home directory
 
