@@ -1,29 +1,28 @@
+""" Whitespace: 4 spaces, no tabs """
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set nosmarttab
 
-au FileType c :set cindent
+""" Use C-style auto-indentation """
+set cindent
+
+" Append semicolon to end of line (if not already ending with ; { } or tab)
 noremap \ :s/\([^\t{};]\)$/\1;/<cr>
 
-set dictionary-=/Users/kim/.vim/php/functionlist.txt dictionary+=/Users/kim/.vim/php/functionlist.txt
-" Use the dictionary completion
-set complete-=k complete+=k
+" Tab key: indent at line start, otherwise trigger keyword completion
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-func! InsertTabWrapper() 
-	let col = col('.') - 1 
-	if !col || getline('.')[col - 1] !~ '\k' 
-		return "\<tab>" 
-	else 
-		return "\<c-p>" 
-	endif 
-endfunction 
+func! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
 
+" Snippets: type abbreviation in insert mode to expand
 map! =sf scanf("%", );<Esc>2hi
 map! =pf printf("%", );<Esc>2hi
-"map! =for for($i=0; ; i++<Esc>A {<Up><ESC>10l
-"map! =for for($i=0; ; i++)<Right>{<CR>}<Up><ESC>9l
-
-" if statement
-"map! =if if (<Esc>A {<Esc>ddA else {<Esc>dd<Up><Up>4li
+map! =for for(i=0; ; i++) {<CR>}<Up><Esc>8li
