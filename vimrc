@@ -82,10 +82,6 @@ function s:ToggleYesNo()
   elseif w=="manual"     | let w="auto"
   elseif w=="auto"       | let w="manual"
 
-  elseif w=="char"       | let w="int"
-  elseif w=="int"        | let w="bool"
-  elseif w=="bool"       | let w="char"
-
   elseif w=="private"    | let w="public"
   elseif w=="public"     | let w="protected"
   elseif w=="protected"  | let w="private"
@@ -144,4 +140,19 @@ au FileType haskell noremap <Leader>; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<
 " :Man 4 echo to go to section for of the man page
 " \K to to open man page for word under cursor
 ":source $VIMRUNTIME/ftplugin/man.vim
+
+"##############################
+" LSP Configuration - clangd for C/C++
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'allowlist': ['c', 'cpp'],
+        \ })
+endif
+
+" Auto-completion settings
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
