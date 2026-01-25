@@ -60,3 +60,9 @@ for file in *; do
     link_file "$file"
   fi
 done
+
+if [[ -d $HOME/Library/Preferences/ ]]; then
+    ln -s ~/.config/clangd $HOME/Library/Preferences/clangd
+    echo "linking $HOME/Library/Preferences/clangd"
+fi
+
