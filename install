@@ -69,3 +69,33 @@ if [[ -d $HOME/Library/Preferences/ ]]; then
     echo "linking $HOME/Library/Preferences/clangd"
 fi
 
+# Install vim plugins
+printf "Install vim plugins (vim-lsp, asyncomplete)? [yn] "
+read -r response
+case $response in
+  y)
+    echo "Installing vim plugins..."
+    mkdir -p vim/pack/plugins/start
+
+    if [ ! -d vim/pack/plugins/start/vim-lsp ]; then
+      echo "Cloning vim-lsp..."
+      git clone https://github.com/prabirshrestha/vim-lsp.git vim/pack/plugins/start/vim-lsp
+    fi
+
+    if [ ! -d vim/pack/plugins/start/asyncomplete.vim ]; then
+      echo "Cloning asyncomplete.vim..."
+      git clone https://github.com/prabirshrestha/asyncomplete.vim.git vim/pack/plugins/start/asyncomplete.vim
+    fi
+
+    if [ ! -d vim/pack/plugins/start/asyncomplete-lsp.vim ]; then
+      echo "Cloning asyncomplete-lsp.vim..."
+      git clone https://github.com/prabirshrestha/asyncomplete-lsp.vim.git vim/pack/plugins/start/asyncomplete-lsp.vim
+    fi
+
+    echo "Vim plugins installed."
+    ;;
+  *)
+    echo "Skipping vim plugins."
+    ;;
+esac
+

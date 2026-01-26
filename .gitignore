@@ -18,3 +18,8 @@ dist
 5.icns
 6.icns
 tmp
+
+# Vim plugins (installed separately)
+vim/pack/plugins/start/asyncomplete-lsp.vim/
+vim/pack/plugins/start/asyncomplete.vim/
+vim/pack/plugins/start/vim-lsp/
