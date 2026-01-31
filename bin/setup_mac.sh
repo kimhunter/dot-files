@@ -7,7 +7,7 @@ defaults write com.apple.dock workspaces-edge-delay -float 0.5
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -boolean YES
 
 
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+# defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
 
 # sudo defaults write /System/Library/LaunchDaemons/com.apple.backupd-auto StartInterval -int 7200
 
