@@ -1,36 +1,66 @@
-#!/bin/bash
-size=$1;
-# set -- $1
-orig=$size
-let "size=size*2000"
-volume_name="ramdisk$orig";
+#!/usr/bin/env bash
+# ----------------------------------------------------------------------
+# ramdisk – create an in‑memory (RAM) disk on macOS.
+#
+# Usage:   ramdisk SIZE_MB [VOLUME_NAME]
+#
+#   SIZE_MB       Size of the ramdisk in megabytes (integer).
+#   VOLUME_NAME   Optional name for the volume; defaults to
+#                 "ramdisk<SIZE_MB>".
+#
+# Exit codes:
+#   0  – success, volume created and opened.
+#   1  – creation failed.
+#   2  – invalid arguments (e.g., missing SIZE_MB).
+#
+# Requirements:
+#   • macOS with `diskutil`, `hdiutil`.
+#   • Optional: `SETFILE` (adds Finder flag) and `osascript`
+#     (forces desktop refresh). Script works without them.
+#
+# The script aborts on any command error (`set -e`) to avoid leaving
+# a half‑created volume.
+# ----------------------------------------------------------------------
+set -e
+set -e
 
-if [[ $2 != "" ]]; then
-	volume_name="$2"
+# Create a RAM disk of SIZE_MB megabytes.
+# Optional second argument supplies a custom volume name.
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 SIZE_MB [VOLUME_NAME]"
+    exit 2
 fi
-# if [[ "$1" < "4" ]]; then
-# 	echo "Size must be greater than 4"
-# 	echo "USAGE: ramdisk (size) [volume name]"
-# 	exit 1;
-# fi
-echo "Attempting to create ${orig}MB ramdisk"
-diskutil erasevolume "Case-sensitive Journaled HFS+" "$volume_name" `hdiutil attach -nomount ram://$size` > /dev/null
-icon="1"; #`php -r 'echo rand(7,7);'`
 
-if [[ -d "/Volumes/$volume_name" ]]; then
-	echo SUCCESS
-	iconfile=~/.icons/$icon.icns
-	if [[ -f "$iconfile" ]]; then
-		# doesn't load icon unless moved in
-		cp ~/.icons/$icon.icns ~/.icons/.VolumeIcon.icns
-		mv ~/.icons/.VolumeIcon.icns "/Volumes/$volume_name/.VolumeIcon.icns";
-	fi	
-	SETFILE -a "C" "/Volumes/$volume_name";
-	osascript -e 'tell app "Finder" to update desktop';
-	open "/Volumes/$volume_name"
-	exit 0;
+size="${1}"
+orig="${size}"
+# Convert MB → 512‑byte sectors (macOS hdiutil expects this)
+size=$(( size * 2000 ))
+
+volume_name="ramdisk${orig}"
+if [[ -n "${2}" ]]; then
+    volume_name="${2}"
 fi
-echo FAILED
-exit 1;
 
+echo "Attempting to create ${orig} MB ramdisk…"
 
+diskutil erasevolume "Case-sensitive Journaled HFS+" \
+    "${volume_name}" \
+    $(hdiutil attach -nomount ram://${size}) > /dev/null
+
+if [[ -d "/Volumes/${volume_name}" ]]; then
+    echo "SUCCESS"
+    icon="1"
+    iconfile="${HOME}/.icons/${icon}.icns"
+    if [[ -f "${iconfile}" ]]; then
+        cp "${iconfile}" "${HOME}/.icons/.VolumeIcon.icns"
+        mv "${HOME}/.icons/.VolumeIcon.icns" "/Volumes/${volume_name}/.VolumeIcon.icns"
+    fi
+    command -v SETFILE >/dev/null && SETFILE -a "C" "/Volumes/${volume_name}"
+    command -v osascript >/dev/null && osascript -e 'tell app "Finder" to update desktop'
+    open "/Volumes/${volume_name}"
+    exit 0
+fi
+
+echo "FAILED"
+exit 1
