@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ollama ps | awk '$1 != "NAME" { print $1}' | xargs -n1 ollama stop
