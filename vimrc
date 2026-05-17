@@ -1,41 +1,50 @@
 " ### Core ###
-syntax on   
-set autoindent
+syntax on
+
+" UI settings
 set ruler
+" backspace=2 is legacy form of backspace=indent,eol,start — allows
+" backspacing over autoindent, line breaks, and the start of an insert
 set backspace=2
-
-" 4 Spaces instead of TABSTOP
-set shiftwidth=4 
-set tabstop=4
-set smarttab 
-set expandtab
-
-" Jump X lines when running out of the screen
+" Jump 5 lines when cursor reaches the screen edge while scrolling
 set scrolljump=5
-" Indicate jump out of the screen when X lines before end of the screen
+" Keep 5 lines of context visible above and below the cursor at all times
 set scrolloff=5
 
-" Nobody ever types jj in insert mode
+" Editing settings
+set autoindent
+set shiftwidth=4
+set tabstop=4
+" Use shiftwidth for <Tab> at the start of a line; tabstop elsewhere
+set smarttab
+set expandtab
+
+" Key mappings
+" map! binds in both insert mode and command-line mode (not just insert)
+" Exit insert mode quickly
 map! jj <Esc>
 
 "##############################
+" Initialize register y to empty on startup
 :let @y=''
+" Blend matching-paren highlight into a black background, effectively hiding it
 hi MatchParen ctermbg=black guibg=black
-       " vim -b : edit binary using xxd-format! 
-        augroup Binary
-          au!
-          au BufReadPre  *.bin let &bin=1
-          au BufReadPost *.bin if &bin | %!xxd 
-          au BufReadPost *.bin set ft=xxd | endif
-          au BufWritePre *.bin if &bin | %!xxd -r 
-          au BufWritePre *.bin endif 
-          au BufWritePost *.bin if &bin | %!xxd
-          au BufWritePost *.bin set nomod | endif
-        augroup END
 
-" This function determines, wether we are on the start of the line text (then tab indents) or
-" if we want to try autocompletion
-func! InsertTabWrapper()
+" vim -b : edit binary using xxd-format!
+augroup Binary
+  autocmd!
+  autocmd BufReadPre  *.bin let &bin=1
+  autocmd BufReadPost *.bin if &bin | %!xxd
+  autocmd BufReadPost *.bin set ft=xxd | endif
+  autocmd BufWritePre *.bin if &bin | %!xxd -r
+  autocmd BufWritePre *.bin endif
+  autocmd BufWritePost *.bin if &bin | %!xxd
+  autocmd BufWritePost *.bin set nomod | endif
+augroup END
+
+" Smart Tab: at the start of a line, insert a real tab (indent); anywhere
+" else, trigger keyword completion (<C-p>) — Tab doubles as a completion key
+function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
         return "\<tab>"
@@ -44,8 +53,7 @@ func! InsertTabWrapper()
     endif
 endfunction
 
-" Show x,y Line number , line position in right hand corner
-"set backup 
+"set backup
 "set backupdir=~/.vim/backup
 
 " Folding
@@ -53,15 +61,16 @@ endfunction
 "set foldnestmax=2
 
 
-" Save File
+" F3: insert current date inline at end of the current line
+" (:read !date inserts output on a new line below; k moves up; J joins them)
 :map <F3> :read !date<CR>kJ
+" F4: insert a C file boilerplate (header comment block + main() skeleton)
 map <F4> ggO/**************************************************<CR>* Brief Discription:<CR>* Written By:  <CR>* Date: <CR>* Version:<CR>**************************************************/<CR>#include <stdio.h><CR>int main(void)<CR>{<CR>return 0;<CR>}<Esc>
 
-"map #7 :r!date '+\# \%a \%d/\%m/\%Y'<CR>
-
 "##############################
-
-"##############################
+" Toggle boolean-like words under cursor (yes↔no, true↔false, on↔off, etc.)
+" Also cycles visibility modifiers (private→public→protected) and
+" git rebase verbs (pick→squash→edit)
 function s:ToggleYesNo()
   let w=expand("<cword>")
   if     w=="yes"        | let w="no"
@@ -96,48 +105,46 @@ function s:ToggleYesNo()
   else                   | let w=""
   endif
   if w!=""
-    exec "normal! \"_ciw\<C-R>=w\<cr>\<Esc>b"
+    execute "normal! \"_ciw\<C-R>=w\<cr>\<Esc>b"
   endif
-endfunc
+endfunction
 
 nnoremap gy  :call <SID>ToggleYesNo()<cr>
-"Quote the current token
+" Wrap the word under cursor in double quotes
 :nnoremap <Leader>" ciw""<Esc>P
 
 "##############################
-"##############################
-" {{{ Auto commands
-" Automatically reload .vimrc when changing
-"autocmd! bufwritepost .vimrc source %
-" }}} Auto commands
 :source ~/.vim/leader.vim
 
 
-au FileType crontab set nobackup nowritebackup
 "##############################
-"noremap ; :!fpc % ; read<CR>
-"au FileType pascal,delphi noremap ; :!fpc %<CR>
-"au FileType pascal,delphi set sw=2 ts=2 
-"#############################
-"##############################
-au FileType ruby set expandtab sw=2 ts=2
-au FileType make set noexpandtab
+" Filetype-specific settings
+augroup FiletypeSettings
+  autocmd!
+  " crontab: disable backup/writebackup so crontab -e can save the file safely
+  autocmd FileType crontab set nobackup nowritebackup
+  autocmd FileType ruby set expandtab sw=2 ts=2
+  autocmd FileType make set noexpandtab
+  autocmd FileType c source ~/.vim/c.vim
+  " <Leader>; compiles and runs the current file
+  autocmd FileType c noremap <Leader>; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
+  autocmd FileType cpp noremap <Leader>; :w<CR>:!clang++ -std=c++23 -o /tmp/a.out  %  && /tmp/a.out<CR>
+  autocmd FileType py noremap <Leader>; :w<CR>:!python  %<CR>
+  autocmd FileType ruby noremap <Leader>; :!ruby %<CR>
+  autocmd FileType haskell noremap <Leader>; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
+
+"######### DISABLED ############
 "noremap ; :!cc % && ./a.out < ./answer.txt <CR>
-
-au FileType c source ~/.vim/c.vim
-
-
 " Compile + Run with leader ;
-"au FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
-au FileType c noremap <Leader>; :w<CR>:!clang -o /tmp/a.out  %  && /tmp/a.out<CR>
-au FileType cpp noremap <Leader>; :w<CR>:!clang++ -std=c++23 -o /tmp/a.out  %  && /tmp/a.out<CR>
-au FileType py noremap <Leader>; :w<CR>:!python  %<CR>
-au FileType ruby noremap <Leader>; :!ruby %<CR>
-au FileType haskell noremap <Leader>; :w<CR>:!ghc -o /tmp/a.out % && /tmp/a.out<CR>
+"  autocmd FileType c noremap ; :!gcc -pedantic-errors -ansi -Wbad-function-cast -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wstrict-prototypes %  && ./a.out<CR>
+"noremap ; :!fpc % ; read<CR>
+"  autocmd FileType pascal,delphi noremap ; :!fpc %<CR>
+"  autocmd FileType pascal,delphi set sw=2 ts=2
+"#############################
+augroup END
 
 "##############################
 " Type :Man (command) to see a man page in split view
-" :Man 4 echo to go to section for of the man page
-" \K to to open man page for word under cursor
+" :Man 4 echo to go to section four of the man page
+" \K to open man page for word under cursor
 ":source $VIMRUNTIME/ftplugin/man.vim
-
