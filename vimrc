@@ -115,10 +115,6 @@ nnoremap gy  :call <SID>ToggleYesNo()<cr>
 
 au FileType crontab set nobackup nowritebackup
 "##############################
-" Map ; to run PHP parser check
-au FileType php source ~/.vim/php/php.vim 
-au FileType php set ts=4 sw=4 noet
-"##############################
 "noremap ; :!fpc % ; read<CR>
 "au FileType pascal,delphi noremap ; :!fpc %<CR>
 "au FileType pascal,delphi set sw=2 ts=2 
