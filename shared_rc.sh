@@ -31,10 +31,6 @@ smiley_status() {
   fi
 }
 
-function evil_git_dirty {
-  [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo " *"
-}
-
 # include a non versioned bashrc
 if [[ -f .other_bashrc ]]; then
     source .other_bashrc
