@@ -105,9 +105,12 @@ setopt completealiases
 setopt correct
 
 # Brew completion
-if type brew &>/dev/null; then
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
   HOMEBREW_NO_INSTALL_CLEANUP=1
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
+elif [[ -d /usr/local/share/zsh/site-functions ]]; then
+  HOMEBREW_NO_INSTALL_CLEANUP=1
+  FPATH="/usr/local/share/zsh/site-functions:${FPATH}"
 fi
 
 autoload -Uz compinit
