@@ -32,25 +32,16 @@ promptinit
 
 export TERM=xterm-256color
 
-# switch our the vcs variable for an isDirty value
-function +vi-evil_git_dirty {
-    if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
-        hook_com[vcs]=' *'
-    else
-        hook_com[vcs]=''
-    fi
-}
-
 # Load version control information
 # Set up the prompt (with git branch name)
 autoload -Uz vcs_info
 # For debugging output
 # zstyle ':vcs_info:*+*:*' debug true
-# Format the vcs_info_msg_0_ variable
-#zstyle ':vcs_info:*' check-for-changes true
-#zstyle ':vcs_info:git:*' formats '(%b %u)'
-zstyle ':vcs_info:git+set-message:*' hooks evil_git_dirty
-zstyle ':vcs_info:git:*' formats '%F{red}(%b%s)%f'
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats '%F{red}(%b%u%c)%f'
 zstyle ':vcs_info:*' disable-patterns "($HOME/?|~/|/Network/*)"
 
 precmd() { vcs_info }
@@ -115,13 +106,23 @@ setopt completealiases
 setopt correct
 
 # Brew completion
-if type brew &>/dev/null; then
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
   HOMEBREW_NO_INSTALL_CLEANUP=1
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
+elif [[ -d /usr/local/share/zsh/site-functions ]]; then
+  HOMEBREW_NO_INSTALL_CLEANUP=1
+  FPATH="/usr/local/share/zsh/site-functions:${FPATH}"
 fi
 
 autoload -Uz compinit
-compinit
+() {
+    setopt local_options extended_glob
+    if [[ ! -f ~/.zcompdump ]] || [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+        compinit
+    else
+        compinit -C
+    fi
+}
 
 if ! [[ $PATH == */opt/homebrew/sbin* ]]; then
     export PATH="/opt/homebrew/sbin:$PATH"

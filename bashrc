@@ -49,7 +49,11 @@ bind "set completion-ignore-case on"
 bind "set bell-style none" # No bell, because it's damn annoying
 bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
 
-BW_PREFIX=`brew --prefix`
+if [[ -d /opt/homebrew ]]; then
+    BW_PREFIX=/opt/homebrew
+elif [[ -d /usr/local/Cellar ]]; then
+    BW_PREFIX=/usr/local
+fi
 
 #source files if exist
 bash_completion_files="
