@@ -37,6 +37,7 @@ export TERM=xterm-256color
 autoload -Uz vcs_info
 # For debugging output
 # zstyle ':vcs_info:*+*:*' debug true
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr ' +'
