@@ -111,7 +111,14 @@ if type brew &>/dev/null; then
 fi
 
 autoload -Uz compinit
-compinit
+() {
+    setopt local_options extended_glob
+    if [[ ! -f ~/.zcompdump ]] || [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+        compinit
+    else
+        compinit -C
+    fi
+}
 
 if ! [[ $PATH == */opt/homebrew/sbin* ]]; then
     export PATH="/opt/homebrew/sbin:$PATH"

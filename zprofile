@@ -18,14 +18,4 @@ bindkey '^x^e' edit-command-line
 bindkey -v
 
 
-####################
-#    Completion    #
-####################
-
-setopt complete_in_word
-setopt list_ambiguous
-setopt completealiases
-setopt correct
-autoload -U compinit
-compinit
 
