@@ -1,5 +1,8 @@
 # vim:ft=zsh
 #
+# Uncomment to profile shell startup, then run `zprof` at the prompt
+#zmodload zsh/zprof
+
 if [[ -r ~/.shared_rc.sh ]]; then
     . ~/.shared_rc.sh
 fi
