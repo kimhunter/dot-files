@@ -17,6 +17,7 @@ fi
 ###################
 #   Environment   #
 ###################
+MANPAGER="less --use-color -Dd+B -Du+208"
 
 ###################
 #     Options     #

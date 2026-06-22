@@ -30,3 +30,5 @@ playground.xcworkspace
 
 .svn
 .hg
+**/.claude/settings.local.json
+
